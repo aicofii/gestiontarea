@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Tareas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Barra lateral -->
+        <aside class="sidebar">
+            <div class="logo">Gestión de Tareas</div>
+            <nav>
+                <ul>
+                    <li><button id="taskListBtn">Tareas</button></li>
+                    <li><button id="createTaskBtn">Crear Tarea</button></li>
+                    <li><button id="createZoneBtn">Crear Zona</button></li>
+                    <li><button id="manageTaskBtn" class="active">Gestión de Tareas</button></li>
+                    <li><button id="taskSummaryBtn">Resumen tarea</button></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Área de contenido principal -->
+        <main class="main-content">
+            <header>
+                <h1>Gestión de Tareas</h1>
+            </header>
+            <section class="management-container">
+                <form id="managementForm" class="management-form">
+                    <label for="taskSelect">Seleccionar Tarea</label>
+                    <select id="taskSelect" required>
+                        <option value="">-- Selecciona una tarea --</option>
+                        <!-- Opciones añadidas dinámicamente -->
+                    </select>
+
+                    <label for="zoneSelect">Seleccionar Zona</label>
+                    <select id="zoneSelect" required>
+                        <option value="">-- Selecciona una zona --</option>
+                        <!-- Opciones añadidas dinámicamente -->
+                    </select>
+
+                    <label for="sortOrder">Ordenar</label>
+                    <select id="sortOrder" required>
+                        <option value="">-- Selecciona orden --</option>
+                        <!-- Opciones añadidas dinámicamente -->
+                    </select>
+
+                    <label for="requirements">Descripción de Requisitos</label>
+                    <textarea id="requirements" rows="6" placeholder="Describe los requisitos de la tarea"></textarea>
+
+                    <label for="photoUpload">Subir Fotos</label>
+                    <div id="photoUpload" class="photo-upload">
+                        <input type="file" id="photoInput" multiple accept="image/*">
+                        <div id="photoPreview" class="photo-preview"></div>
+                    </div>
+
+                    <button type="submit" id="saveButton">Guardar</button>
+                </form>
+            </section>
+        </main>
+    </div>
+    <script src="task_management.js"></script>
+</body>
+</html>

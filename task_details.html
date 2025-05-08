@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de la Tarea</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container full-page">
+        <main class="main-content">
+            <header>
+                <h1 id="taskTitle">Detalles de la Tarea</h1>
+            </header>
+            <section id="zoneContainer" class="zone-container">
+                <!-- Los bloques de zonas se añadirán dinámicamente aquí -->
+            </section>
+            <section id="photoContainer" class="photo-container">
+                <h2>Fotos de la Tarea</h2>
+                <div id="photoPreview" class="photo-preview">
+                    <!-- Las fotos se añadirán dinámicamente aquí -->
+                </div>
+            </section>
+            <!-- Modal para foto ampliada -->
+            <div id="photoModal" class="modal hidden">
+                <div class="modal-content">
+                    <img id="enlargedPhoto" src="" alt="Enlarged photo">
+                    <div class="modal-buttons">
+                        <button id="closeModalBtn">Regresar</button>
+                        <button id="completeBtn">Completar</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="task_details.js"></script>
+</body>
+</html>
