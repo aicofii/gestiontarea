@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const createTaskBtn = document.getElementById('createTaskBtn');
     const manageTaskBtn = document.getElementById('manageTaskBtn');
     const createZoneBtn = document.getElementById('createZoneBtn');
+    const taskSummaryBtn = document.getElementById('taskSummaryBtn');
     const createTaskButton = document.getElementById('createTaskButton');
     const taskZoneList = document.getElementById('taskZoneList');
 
@@ -86,6 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     createTaskButton.addEventListener('click', () => {
         window.location.href = 'task_management.html';
+    });
+
+    taskSummaryBtn.addEventListener('click', () => {
+        window.location.href = 'resumen.html';
     });
 
     // Render the list on load

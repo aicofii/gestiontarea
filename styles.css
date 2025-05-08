@@ -489,7 +489,8 @@ header h1 {
 }
 
 .edit-btn,
-.delete-btn {
+.delete-btn,
+.view-btn {
     padding: 8px 12px;
     border: none;
     border-radius: 5px;
@@ -514,6 +515,15 @@ header h1 {
 
 .delete-btn:hover {
     background-color: #c0392b;
+}
+
+.view-btn {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.view-btn:hover {
+    background-color: #2980b9;
 }
 
 .create-task-btn {

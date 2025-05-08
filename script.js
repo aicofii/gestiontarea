@@ -77,9 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     taskSummaryBtn.addEventListener('click', () => {
         setActiveButton(taskSummaryBtn);
-        // Placeholder for navigation or action
-        // window.location.href = 'TaskSummary.html'; // Uncomment and set target page when available
-        console.log('Resumen tarea clicked');
+        window.location.href = 'resumen.html';
     });
 
     // Cerrar modales
@@ -103,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     zoneModal.addEventListener('click', (e) => {
         if (e.target === zoneModal) {
-            zoneModal恼.classList.add('hidden');
+            zoneModal.classList.add('hidden');
             zoneForm.reset();
         }
     });

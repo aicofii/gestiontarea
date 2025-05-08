@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const createTaskBtn = document.getElementById('createTaskBtn');
     const manageTaskBtn = document.getElementById('manageTaskBtn');
     const createZoneBtn = document.getElementById('createZoneBtn');
+    const taskSummaryBtn = document.getElementById('taskSummaryBtn');
     const taskSelect = document.getElementById('taskSelect');
     const zoneSelect = document.getElementById('zoneSelect');
     const sortOrder = document.getElementById('sortOrder');
@@ -181,5 +182,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     createZoneBtn.addEventListener('click', () => {
         window.location.href = 'index.html';
+    });
+
+    taskSummaryBtn.addEventListener('click', () => {
+        window.location.href = 'resumen.html';
     });
 });
