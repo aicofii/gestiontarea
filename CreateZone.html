@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Zona</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Barra lateral -->
+        <aside class="sidebar">
+            <div class="logo">Gestión de Tareas</div>
+            <nav>
+                <ul>
+                    <li><button id="taskListBtn">Tareas</button></li>
+                    <li><button id="createTaskBtn">Crear Tarea</button></li>
+                    <li><button id="createZoneBtn" class="active">Crear Zona</button></li>
+                    <li><button id="manageTaskBtn">Gestión de Tareas</button></li>
+                    <li><button id="taskSummaryBtn">Resumen tarea</button></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Área de contenido principal -->
+        <main class="main-content">
+            <header>
+                <h1>Crear Zona</h1>
+            </header>
+            <section class="management-container">
+                <button id="createZoneButton" class="create-task-btn">Crear Zona</button>
+                <table class="task-table">
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Descripción</th>
+                            <th>Operaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="zoneList">
+                        <!-- Las filas se añadirán dinámicamente aquí -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Modal para crear zona -->
+            <div id="zoneModal" class="modal hidden">
+                <div class="modal-content">
+                    <span id="closeZoneModal" class="close">×</span>
+                    <h2>Crear Nueva Zona</h2>
+                    <form id="zoneForm">
+                        <label for="zoneTitle">Título de la Zona</label>
+                        <input type="text" id="zoneTitle" required>
+                        <label for="zoneDesc">Descripción de la Zona</label>
+                        <textarea id="zoneDesc" rows="4"></textarea>
+                        <button type="submit">Añadir Zona</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="create_zone.js"></script>
+</body>
+</html>

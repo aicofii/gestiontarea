@@ -60,8 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     createTaskBtn.addEventListener('click', () => {
         setActiveButton(createTaskBtn);
-        taskModal.classList.remove('hidden');
-        document.getElementById('taskTitle').focus(); // Focus on task title input
+        window.location.href = 'CreateTask.html';
     });
 
     manageTaskBtn.addEventListener('click', () => {
@@ -71,8 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     createZoneBtn.addEventListener('click', () => {
         setActiveButton(createZoneBtn);
-        zoneModal.classList.remove('hidden');
-        document.getElementById('zoneTitle').focus(); // Focus on zone title input
+        window.location.href = 'CreateZone.html';
     });
 
     taskSummaryBtn.addEventListener('click', () => {

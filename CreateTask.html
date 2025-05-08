@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Tarea</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Barra lateral -->
+        <aside class="sidebar">
+            <div class="logo">Gestión de Tareas</div>
+            <nav>
+                <ul>
+                    <li><button id="taskListBtn">Tareas</button></li>
+                    <li><button id="createTaskBtn" class="active">Crear Tarea</button></li>
+                    <li><button id="createZoneBtn">Crear Zona</button></li>
+                    <li><button id="manageTaskBtn">Gestión de Tareas</button></li>
+                    <li><button id="taskSummaryBtn">Resumen tarea</button></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Área de contenido principal -->
+        <main class="main-content">
+            <header>
+                <h1>Crear Tarea</h1>
+            </header>
+            <section class="management-container">
+                <button id="createTaskButton" class="create-task-btn">Crear Tarea</button>
+                <table class="task-table">
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Descripción</th>
+                            <th>Operaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="taskList">
+                        <!-- Las filas se añadirán dinámicamente aquí -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Modal para crear tarea -->
+            <div id="taskModal" class="modal hidden">
+                <div class="modal-content">
+                    <span id="closeModal" class="close">×</span>
+                    <h2>Crear Nueva Tarea</h2>
+                    <form id="taskForm">
+                        <label for="taskTitle">Título de la Tarea</label>
+                        <input type="text" id="taskTitle" required>
+                        <label for="taskDesc">Descripción de la Tarea</label>
+                        <textarea id="taskDesc" rows="4"></textarea>
+                        <button type="submit">Añadir Tarea</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="create_task.js"></script>
+</body>
+</html>
