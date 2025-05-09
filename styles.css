@@ -66,6 +66,7 @@ body {
     background-color: #fff;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 header h1 {
@@ -167,7 +168,7 @@ header h1 {
     color: #7f8c8d;
 }
 
-/* Contenedor de fotos */
+/* Contenedor de fotos (original for task_details.html) */
 .photo-container {
     flex: 1;
     background-color: #e6ecef;
@@ -180,6 +181,30 @@ header h1 {
     margin: 0 0 20px;
     font-size: 1.5em;
     color: #2c3e50;
+}
+
+/* Contenedor de fotos para empleado en index.html */
+.employee-photo-container {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #e6ecef;
+    padding: 10px;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.employee-photo-container img#employeePhoto {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: none;
 }
 
 /* Modal */
@@ -209,6 +234,7 @@ header h1 {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     position: relative;
     animation: slideIn 0.3s ease-out;
+    text-align: center;
 }
 
 @keyframes slideIn {
@@ -226,7 +252,6 @@ header h1 {
     margin: 0 0 20px;
     font-size: 1.5em;
     color: #2c3e50;
-    text-align: center;
 }
 
 .modal-content .close {
@@ -418,7 +443,7 @@ header h1 {
 }
 
 .photo-preview .photo-item.completed img {
-    border: 3px solid #1abc9c;
+    border: 5px solid #e74c3c;
 }
 
 .photo-preview .photo-wrapper {
@@ -470,22 +495,121 @@ header h1 {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    table-layout: auto;
 }
 
 .task-table th,
 .task-table td {
-    padding: 12px;
+    padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    min-width: 100px;
+    font-size: 0.95em;
 }
 
 .task-table th {
     background-color: #2c3e50;
     color: #fff;
+    font-weight: bold;
 }
 
 .task-table tr:hover {
     background-color: #f1f1f1;
+}
+
+/* Specific styles for resumen.html table (summary-task-table) */
+.summary-task-table th:nth-child(1),
+.summary-task-table td:nth-child(1) { /* Fecha */
+    width: 15%;
+}
+.summary-task-table th:nth-child(2),
+.summary-task-table td:nth-child(2) { /* Nombre */
+    width: 20%;
+}
+.summary-task-table th:nth-child(3),
+.summary-task-table td:nth-child(3) { /* Título */
+    width: 20%;
+}
+.summary-task-table th:nth-child(4),
+.summary-task-table td:nth-child(4) { /* Zona */
+    width: 15%;
+}
+.summary-task-table th:nth-child(5),
+.summary-task-table td:nth-child(5) { /* Completitud */
+    width: 10%;
+}
+.summary-task-table th:nth-child(6),
+.summary-task-table td:nth-child(6) { /* Puntos */
+    width: 10%;
+}
+.summary-task-table th:nth-child(7),
+.summary-task-table td:nth-child(7) { /* Operaciones */
+    width: 10%;
+}
+
+/* Specific styles for TareaList.html table (tarea-task-table) */
+.tarea-task-table th:nth-child(1),
+.tarea-task-table td:nth-child(1) { /* Tipo */
+    width: 15%;
+}
+.tarea-task-table th:nth-child(2),
+.tarea-task-table td:nth-child(2) { /* Título */
+    width: 20%;
+}
+.tarea-task-table th:nth-child(3),
+.tarea-task-table td:nth-child(3) { /* Zona */
+    width: 20%;
+}
+.tarea-task-table th:nth-child(4),
+.tarea-task-table td:nth-child(4) { /* Descripción */
+    width: 30%;
+}
+.tarea-task-table th:nth-child(5),
+.tarea-task-table td:nth-child(5) { /* Operaciones */
+    width: 15%;
+}
+
+/* 优化 TareaList.html 的 Operaciones 列 */
+.tarea-task-table td:nth-child(5) {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* 按钮之间的间距 */
+    flex-wrap: nowrap; /* 防止按钮换行 */
+    min-width: 180px; /* 确保足够空间容纳两个按钮 */
+}
+
+/* 调整按钮样式以适应水平布局 */
+.tarea-task-table .edit-btn,
+.tarea-task-table .delete-btn {
+    margin-right: 0; /* 移除默认的 margin-right */
+    flex: 1; /* 按钮平均分配空间 */
+    min-width: 70px; /* 最小宽度，防止按钮过窄 */
+}
+
+/* 增加 Operaciones 列的宽度 */
+.tarea-task-table th:nth-child(5),
+.tarea-task-table td:nth-child(5) {
+    width: 20%; /* 从 15% 增加到 20%，提供更多空间 */
+}
+
+/* 响应式设计：小屏幕优化 */
+@media screen and (max-width: 768px) {
+    .tarea-task-table td:nth-child(5) {
+        gap: 5px; /* 减小按钮间距 */
+        min-width: 140px; /* 适应小屏幕 */
+    }
+
+    .tarea-task-table .edit-btn,
+    .tarea-task-table .delete-btn {
+        padding: 6px 8px; /* 减小按钮内边距 */
+        font-size: 0.85em; /* 减小字体 */
+        min-width: 60px; /* 减小最小宽度 */
+    }
+
+    .tarea-task-table th:nth-child(5),
+    .tarea-task-table td:nth-child(5) {
+        width: 25%; /* 在小屏幕上增加宽度 */
+    }
 }
 
 .edit-btn,
@@ -545,4 +669,93 @@ header h1 {
 .zone-card.selected {
     border: 2px solid #007bff;
     background-color: #e7f1ff;
+}
+
+/* Estilos para el panel de filtros */
+.filter-panel {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: right 0.3s ease-in-out;
+}
+
+.filter-panel.active {
+    right: 0;
+}
+
+.filter-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.filter-content h2 {
+    margin: 0 0 20px;
+    font-size: 1.5em;
+    color: #2c3e50;
+}
+
+.filter-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 1;
+}
+
+.filter-content label {
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.filter-content select,
+.filter-content input[type="date"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.filter-content button[type="submit"] {
+    padding: 12px;
+    background-color: #1abc9c;
+    border: none;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.filter-content button[type="submit"]:hover {
+    background-color: #16a085;
+}
+
+.filter-content .close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5em;
+    color: #e74c3c;
+    cursor: pointer;
+}
+
+.filter-content .close:hover {
+    color: #c0392b;
+}
+
+@media screen and (max-width: 768px) {
+    .task-table th,
+    .task-table td {
+        padding: 8px 10px;
+        min-width: 80px;
+        font-size: 0.9em;
+    }
 }

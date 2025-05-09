@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const enlargedPhoto = document.getElementById('enlargedPhoto');
     const closeModalBtn = document.getElementById('closeModalBtn');
     const completeBtn = document.getElementById('completeBtn');
+    const noEmployeeModal = document.getElementById('noEmployeeModal');
+    const closeNoEmployeeModalBtn = document.getElementById('closeNoEmployeeModalBtn');
 
     // Get task title from URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -16,6 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const zones = JSON.parse(localStorage.getItem('zones')) || [];
     const taskManagementRecords = JSON.parse(localStorage.getItem('taskManagementRecords')) || [];
     let completedPhotos = JSON.parse(localStorage.getItem('completedPhotos')) || {};
+
+    // Load selected employee and date from localStorage
+    const selectedTurno = JSON.parse(localStorage.getItem('selectedTurno')) || '';
+    const selectedDate = JSON.parse(localStorage.getItem('selectedDate')) || new Date().toISOString().split('T')[0];
 
     // Update localStorage for completed photos
     const updateCompletedPhotosStorage = () => {
@@ -77,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
             taskPhotos.forEach((photo, photoIndex) => {
                 const photoItem = document.createElement('div');
                 photoItem.classList.add('photo-item');
-                const photoKey = `${taskTitle}_${recordIndex}_${photoIndex}`;
+                const photoKey = `${taskTitle}_${recordIndex}_${photoIndex}_${selectedTurno}_${selectedDate}`;
                 if (completedPhotos[photoKey]) {
                     photoItem.classList.add('completed');
                 }
@@ -88,13 +94,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 photoItem.querySelector('img').addEventListener('click', () => {
                     enlargedPhoto.src = photo.src;
                     photoModal.classList.remove('hidden');
-                    // Handle complete button click
-                    completeBtn.onclick = () => {
-                        completedPhotos[photoKey] = true;
-                        updateCompletedPhotosStorage();
-                        photoItem.classList.add('completed');
-                        photoModal.classList.add('hidden');
-                    };
+                    // Check if an employee is selected before enabling completion
+                    if (!selectedTurno) {
+                        completeBtn.disabled = true;
+                        completeBtn.title = 'Debes seleccionar un empleado en la página principal para completar tareas.';
+                        noEmployeeModal.classList.remove('hidden');
+                        completeBtn.onclick = null; // Clear any existing handler
+                    } else {
+                        completeBtn.disabled = false;
+                        completeBtn.title = '';
+                        // Handle complete button click
+                        completeBtn.onclick = () => {
+                            completedPhotos[photoKey] = true;
+                            updateCompletedPhotosStorage();
+                            photoItem.classList.add('completed');
+                            photoModal.classList.add('hidden');
+                        };
+                    }
                 });
                 photoPreview.appendChild(photoItem);
             });
@@ -103,8 +119,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Close modal on return button click
+    // Close modals
     closeModalBtn.addEventListener('click', () => {
         photoModal.classList.add('hidden');
+    });
+
+    closeNoEmployeeModalBtn.addEventListener('click', () => {
+        noEmployeeModal.classList.add('hidden');
+        photoModal.classList.add('hidden');
+    });
+
+    // Close no employee modal when clicking outside
+    noEmployeeModal.addEventListener('click', (e) => {
+        if (e.target === noEmployeeModal) {
+            noEmployeeModal.classList.add('hidden');
+            photoModal.classList.add('hidden');
+        }
     });
 });

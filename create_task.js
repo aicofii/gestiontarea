@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const manageTaskBtn = document.getElementById('manageTaskBtn');
     const createZoneBtn = document.getElementById('createZoneBtn');
     const taskSummaryBtn = document.getElementById('taskSummaryBtn');
+    const employeeBtn = document.getElementById('employeeBtn');
     const createTaskButton = document.getElementById('createTaskButton');
     const taskList = document.getElementById('taskList');
     const taskModal = document.getElementById('taskModal');
@@ -116,6 +117,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     taskSummaryBtn.addEventListener('click', () => {
         window.location.href = 'resumen.html';
+    });
+
+    employeeBtn.addEventListener('click', () => {
+        window.location.href = 'employee.html';
     });
 
     // Render the list on load

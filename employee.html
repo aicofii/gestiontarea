@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Empleados</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Barra lateral -->
+        <aside class="sidebar">
+            <div class="logo">Gestión de Tareas</div>
+            <nav>
+                <ul>
+                    <li><button id="taskListBtn">Tareas</button></li>
+                    <li><button id="createTaskBtn">Crear Tarea</button></li>
+                    <li><button id="createZoneBtn">Crear Zona</button></li>
+                    <li><button id="manageTaskBtn">Gestión de Tareas</button></li>
+                    <li><button id="taskSummaryBtn">Resumen tarea</button></li>
+                    <li><button id="employeeBtn" class="active">Empleador</button></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Área de contenido principal -->
+        <main class="main-content">
+            <header>
+                <h1>Gestión de Empleados</h1>
+            </header>
+            <section class="management-container">
+                <button id="createEmployeeButton" class="create-task-btn">Crear Empleado</button>
+                <table class="task-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre del Empleado</th>
+                            <th>Operaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employeeList">
+                        <!-- Las filas se añadirán dinámicamente aquí -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Modal para crear/editar empleado -->
+            <div id="employeeModal" class="modal hidden">
+                <div class="modal-content">
+                    <span id="closeModal" class="close">×</span>
+                    <h2>Crear Nuevo Empleado</h2>
+                    <form id="employeeForm">
+                        <label for="employeeName">Nombre</label>
+                        <input type="text" id="employeeName" required>
+                        <label for="employeeSurname">Apellido</label>
+                        <input type="text" id="employeeSurname" required>
+                        <label for="employeePhoto">Foto</label>
+                        <input type="file" id="employeePhoto" accept="image/*">
+                        <button type="submit">Añadir Empleado</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="employee.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93d3169b7afcbca4',t:'MTc0NjgxMzU0MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

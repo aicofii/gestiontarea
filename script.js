@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const manageTaskBtn = document.getElementById('manageTaskBtn');
     const createZoneBtn = document.getElementById('createZoneBtn');
     const taskSummaryBtn = document.getElementById('taskSummaryBtn');
+    const employeeBtn = document.getElementById('employeeBtn');
     const taskModal = document.getElementById('taskModal');
     const zoneModal = document.getElementById('zoneModal');
     const closeModal = document.getElementById('closeModal');
@@ -13,11 +14,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const taskContainer = document.getElementById('taskContainer');
     const turnoSelect = document.getElementById('turnoSelect');
     const taskDate = document.getElementById('taskDate');
+    const employeePhoto = document.getElementById('employeePhoto');
 
-    // Almacenar tareas, zonas y turno en localStorage
+    // Almacenar tareas, zonas, turno y fecha en localStorage
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     let zones = JSON.parse(localStorage.getItem('zones')) || [];
     let selectedTurno = JSON.parse(localStorage.getItem('selectedTurno')) || '';
+    let employees = JSON.parse(localStorage.getItem('employees')) || [];
+    let selectedDate = JSON.parse(localStorage.getItem('selectedDate')) || '';
 
     // Actualizar localStorage
     const updateTaskStorage = () => {
@@ -32,23 +36,71 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('selectedTurno', JSON.stringify(turnoSelect.value));
     };
 
+    const updateDateStorage = () => {
+        localStorage.setItem('selectedDate', JSON.stringify(taskDate.value));
+    };
+
+    // Resetear completados si la fecha ha cambiado
+    const checkAndResetCompletions = () => {
+        const today = new Date().toISOString().split('T')[0];
+        if (selectedDate && selectedDate !== today) {
+            localStorage.setItem('completedPhotos', JSON.stringify({}));
+        }
+        selectedDate = today;
+        updateDateStorage();
+    };
+
     // Inicializar fecha con la fecha actual
     const today = new Date().toISOString().split('T')[0];
     taskDate.value = today;
+    checkAndResetCompletions();
 
     // Inicializar turno con el valor almacenado
     if (selectedTurno) {
         turnoSelect.value = selectedTurno;
     }
 
-    // Guardar turno cuando se selecciona
+    // Populate turnoSelect with employees
+    const updateTurnoSelect = () => {
+        turnoSelect.innerHTML = '<option value="">-- Selecciona un empleado --</option>';
+        employees.forEach(employee => {
+            const option = document.createElement('option');
+            option.value = `${employee.name} ${employee.surname}`;
+            option.textContent = `${employee.name} ${employee.surname}`;
+            turnoSelect.appendChild(option);
+        });
+        if (selectedTurno) {
+            turnoSelect.value = selectedTurno;
+            updateEmployeePhoto();
+        }
+    };
+
+    // Update employee photo based on selected turno
+    const updateEmployeePhoto = () => {
+        const selectedEmployee = employees.find(emp => `${emp.name} ${emp.surname}` === turnoSelect.value);
+        if (selectedEmployee && selectedEmployee.photo) {
+            employeePhoto.src = selectedEmployee.photo;
+            employeePhoto.style.display = 'block';
+        } else {
+            employeePhoto.src = '';
+            employeePhoto.style.display = 'none';
+        }
+    };
+
+    // Guardar turno, fecha y verificar reset cuando cambian
     turnoSelect.addEventListener('change', () => {
         updateTurnoStorage();
+        updateEmployeePhoto();
+    });
+
+    taskDate.addEventListener('change', () => {
+        checkAndResetCompletions();
+        updateDateStorage();
     });
 
     // Cambiar estado de los botones de la barra lateral
     const setActiveButton = (activeBtn) => {
-        [taskListBtn, createTaskBtn, manageTaskBtn, createZoneBtn, taskSummaryBtn].forEach(btn => {
+        [taskListBtn, createTaskBtn, manageTaskBtn, createZoneBtn, taskSummaryBtn, employeeBtn].forEach(btn => {
             btn.classList.remove('active');
         });
         activeBtn.classList.add('active');
@@ -76,6 +128,11 @@ document.addEventListener('DOMContentLoaded', () => {
     taskSummaryBtn.addEventListener('click', () => {
         setActiveButton(taskSummaryBtn);
         window.location.href = 'resumen.html';
+    });
+
+    employeeBtn.addEventListener('click', () => {
+        setActiveButton(employeeBtn);
+        window.location.href = 'employee.html';
     });
 
     // Cerrar modales
@@ -159,4 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         taskContainer.appendChild(taskCard);
     });
+
+    // Inicializar turnoSelect y foto
+    updateTurnoSelect();
 });

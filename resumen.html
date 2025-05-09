@@ -18,6 +18,7 @@
                     <li><button id="createZoneBtn">Crear Zona</button></li>
                     <li><button id="manageTaskBtn">Gestión de Tareas</button></li>
                     <li><button id="taskSummaryBtn" class="active">Resumen tarea</button></li>
+                    <li><button id="employeeBtn">Empleador</button></li>
                 </ul>
             </nav>
         </aside>
@@ -26,9 +27,10 @@
         <main class="main-content">
             <header>
                 <h1>Resumen de Tareas</h1>
+                <button id="filterBtn" class="create-task-btn">Filtrar</button>
             </header>
             <section class="management-container">
-                <table class="task-table">
+                <table class="task-table summary-task-table"> <!-- Added summary-task-table class -->
                     <thead>
                         <tr>
                             <th>Fecha</th>
@@ -36,14 +38,32 @@
                             <th>Título</th>
                             <th>Zona</th>
                             <th>Completitud</th>
+                            <th>Puntos</th>
                             <th>Operaciones</th>
                         </tr>
                     </thead>
-                    <tbody id="summaryList">
+    <tbody id="summaryList">
                         <!-- Las filas se añadirán dinámicamente aquí -->
                     </tbody>
                 </table>
             </section>
+            <!-- Panel de filtros -->
+            <div id="filterPanel" class="filter-panel hidden">
+                <div class="filter-content">
+                    <span id="closeFilterPanel" class="close">×</span>
+                    <h2>Filtros</h2>
+                    <form id="filterForm">
+                        <label for="employeeFilter">Filtrar por Empleado</label>
+                        <select id="employeeFilter">
+                            <option value="">-- Todos los empleados --</option>
+                            <!-- Opciones se añadirán dinámicamente -->
+                        </select>
+                        <label for="dateFilter">Filtrar por Fecha</label>
+                        <input type="date" id="dateFilter">
+                        <button type="submit">Aplicar Filtros</button>
+                    </form>
+                </div>
+            </div>
         </main>
     </div>
     <script src="resumen.js"></script>
