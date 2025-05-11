@@ -1,3 +1,15 @@
+
+// 🔒 Comprobación de autenticación al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    firebase.auth().onAuthStateChanged(function(user) {
+        const localUser = localStorage.getItem('currentUser');
+        if (!user && !localUser) {
+            // No hay usuario logueado, redirigir al login
+            window.location.href = 'login.html';
+        }
+    });
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const taskListBtn = document.getElementById('taskListBtn');
     const createTaskBtn = document.getElementById('createTaskBtn');
@@ -5,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const createZoneBtn = document.getElementById('createZoneBtn');
     const taskSummaryBtn = document.getElementById('taskSummaryBtn');
     const employeeBtn = document.getElementById('employeeBtn');
+    const loginBtn = document.getElementById('loginBtn');
     const taskModal = document.getElementById('taskModal');
     const zoneModal = document.getElementById('zoneModal');
     const closeModal = document.getElementById('closeModal');
@@ -100,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Cambiar estado de los botones de la barra lateral
     const setActiveButton = (activeBtn) => {
-        [taskListBtn, createTaskBtn, manageTaskBtn, createZoneBtn, taskSummaryBtn, employeeBtn].forEach(btn => {
+        [taskListBtn, createTaskBtn, manageTaskBtn, createZoneBtn, taskSummaryBtn, employeeBtn, loginBtn].forEach(btn => {
             btn.classList.remove('active');
         });
         activeBtn.classList.add('active');
@@ -133,6 +146,11 @@ document.addEventListener('DOMContentLoaded', () => {
     employeeBtn.addEventListener('click', () => {
         setActiveButton(employeeBtn);
         window.location.href = 'employee.html';
+    });
+
+    loginBtn.addEventListener('click', () => {
+        setActiveButton(loginBtn);
+        window.location.href = 'login.html';
     });
 
     // Cerrar modales
